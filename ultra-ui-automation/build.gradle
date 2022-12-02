@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'net.linguica.maven-settings' version '0.5'
+    id 'io.qameta.allure' version '2.9.6'
+    id "io.freefair.lombok" version "6.3.0"
+}
+
+group = 'md.vgorceac'
+version '1.0.0-SNAPSHOT'
+description = 'UI Automation framework for Ultra.io'
+sourceCompatibility = 17
+targetCompatibility = 17
+
+compileJava { options.encoding = "UTF-8" }
+compileTestJava { options.encoding = "UTF-8" }
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+allure {
+    adapter {
+        allureJavaVersion = allureVersion
+        frameworks {
+            cucumberJvm
+        }
+    }
+}
+
+dependencies {
+
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: cucumberVersion
+    implementation group: 'io.cucumber', name: 'cucumber-testng', version: cucumberVersion
+    implementation group: 'io.cucumber', name: 'cucumber-spring', version: cucumberVersion
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: springBootStarterVersion
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootStarterVersion
+
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-api', version: seleniumVersion
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: seleniumVersion
+
+    implementation group: 'io.qameta.allure', name: 'allure-cucumber7-jvm', version: allureVersion
+    implementation group: 'io.qameta.allure', name: 'allure-test-filter', version: allureVersion
+
+    implementation group: 'io.qameta.atlas', name: 'atlas-core', version: atlasVersion
+    implementation group: 'io.qameta.atlas', name: 'atlas-webdriver', version: atlasVersion
+
+    implementation group: 'ru.yandex.qatools.matchers', name: 'webdriver-matchers', version: webdriverMatchersVersion
+
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: webdriverManagerVersion
+
+
+}
+
+test {
+    systemProperty "dataproviderthreadcount", System.getProperty("parallelthreads", '1')
+    ignoreFailures = true
+    useTestNG {
+        systemProperties System.getProperties()
+    }
+    outputs.upToDateWhen { false }
+    maxHeapSize = "1024m"
+    scanForTestClasses = false
+    testLogging.showStandardStreams = true
+}
