@@ -1,3 +1,8 @@
 env:
   base_url: https://google.com
   browser: firefox
+
+---
+users:
+  - username: standard_user
+    password: secret_sauce
