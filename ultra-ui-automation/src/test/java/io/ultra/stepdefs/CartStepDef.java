@@ -23,4 +23,15 @@ public class CartStepDef {
 	public void proceedToNextCheckoutStep() {
 		cartActions.clickCheckout();
 	}
+
+	@When("proceed to checkout button is disabled")
+	public void proceedToCheckoutButtonIsDisabled() {
+		cartActions.checkCheckoutButtonIsDisabled();
+	}
+
+	@When("user removes a product from the cart")
+	public void removeAProductFromTheCart() {
+		cartActions.openCartPage();
+		cartActions.removeAProduct();
+	}
 }

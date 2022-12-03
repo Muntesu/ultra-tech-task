@@ -43,7 +43,13 @@ Feature: Purchase flow
       | Test       | Example   | 12345 |
     Then summary page with proper info is shown
     When user removes a product from the cart
-    And proceeds through checkout
+
+    When user proceeds to checkout step one
+    And user submits address from with
+      | First Name | Last Name | Zip   |
+      | Test       | Example   | 12345 |
+    Then summary page with proper info is shown
+
     And user submits the order
     Then thank you page is shown
 
@@ -64,7 +70,7 @@ Feature: Purchase flow
 
     When user proceeds to checkout step one
     And user submits address from with
-      | First Name | Last Name | Zip   |
-      | Test       | Example   | 12345 |
+      | First Name | Last Name | Zip     |
+      | [empty]    | [empty]   | [empty] |
     Then address validation messages are displayed
 

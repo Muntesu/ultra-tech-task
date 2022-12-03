@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import static io.ultra.core.context.ContextKey.ADDRESS;
+import static org.hamcrest.Matchers.not;
+import static ru.yandex.qatools.matchers.webdriver.DisplayedMatcher.displayed;
 
 @AllArgsConstructor
 @Component
@@ -30,6 +32,9 @@ public class AddressActions {
 		addressPage.zip().sendKeys(address.getZip());
 	}
 
+	public void checkValidationDisplayed() {
+		getAddressPage().error().should("Address Error message was not displayed",displayed());
+	}
 
 	private void saveAddressContext(Address address) {
 		testContext.save(ADDRESS, address);

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum ContextKey {
 	CART("Cart"),
-	ADDRESS("Address");
+	ADDRESS("Address"), PRODUCT_ITEM_INDEXES("Product item indexes");
 
 	final String name;
 }

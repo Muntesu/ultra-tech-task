@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.money.MonetaryAmount;
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -33,7 +34,19 @@ public class InventoryActions {
 	private ProductCard getRandomProductCard() {
 		InventoryPage inventoryPage = atlasActions.getPage(InventoryPage.class);
 		inventoryPage.products().should(hasSize(not(0)));
-		int index = new Random().nextInt(inventoryPage.products().size());
+
+		//Logic for picking up unique item (remember indexes that were already used)
+		ArrayList usedIndexes = testContext.getOrCreate(ContextKey.PRODUCT_ITEM_INDEXES, ArrayList.class);
+		int index;
+
+		if (usedIndexes.size() >= inventoryPage.products().size())
+			throw new RuntimeException("There are no products left");
+
+		do {
+			index = new Random().nextInt(inventoryPage.products().size());
+		} while (usedIndexes.contains(index));
+
+		usedIndexes.add(index);
 		return inventoryPage.products().get(index);
 	}
 

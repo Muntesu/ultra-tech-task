@@ -16,4 +16,7 @@ public interface AddressPage extends BasePage {
 
 	@FindBy(".//input[@id='continue']")
 	BaseElement continueBtn();
+
+	@FindBy(".//div[@class='error-message-container error']")
+	BaseElement error();
 }

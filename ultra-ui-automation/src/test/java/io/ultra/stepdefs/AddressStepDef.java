@@ -15,5 +15,10 @@ public class AddressStepDef {
 		addressActions.submitAddress(address);
 	}
 
+	@When("address validation messages are displayed")
+	public void checkValidationMessagesAreDisplayed() {
+		addressActions.checkValidationDisplayed();
+	}
+
 
 }

@@ -12,4 +12,9 @@ public class InventoryStepDefs {
 	public void addProductToCart() {
 		inventoryActions.addProductToCart();
 	}
+	@When("user adds to cart several products from inventory page")
+	public void addSeveralProductsToCart() {
+		inventoryActions.addProductToCart();
+		inventoryActions.addProductToCart();
+	}
 }
