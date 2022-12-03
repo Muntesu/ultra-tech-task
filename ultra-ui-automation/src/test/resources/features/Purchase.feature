@@ -7,7 +7,7 @@ Feature: Purchase flow
     Then product is saved in the cart
 
     When user proceeds to checkout step one
-    And submits address from with
+    And user submits address from with
       | First Name | Last Name | Zip   |
       | Test       | Example   | 12345 |
     Then summary page with proper info is shown

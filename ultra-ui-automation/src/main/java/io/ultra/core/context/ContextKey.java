@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum ContextKey {
-	PROPERTY_EXAMPLE("Property example");
+	CART("Cart"),
+	ADDRESS("Address");
 
 	final String name;
 }

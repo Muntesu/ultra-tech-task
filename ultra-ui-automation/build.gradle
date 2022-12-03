@@ -50,7 +50,7 @@ dependencies {
 
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: webdriverManagerVersion
 
-
+    implementation group: 'org.javamoney', 'name': 'moneta', version: javamoneyVersion
 }
 
 test {
