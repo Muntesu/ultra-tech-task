@@ -25,15 +25,18 @@ public class InventoryActions {
 
 
 	public void addProductToCart() {
-		InventoryPage inventoryPage = atlasActions.getPage(InventoryPage.class);
-		inventoryPage.products().should(hasSize(not(0)));
-
-		int index = new Random().nextInt(inventoryPage.products().size());
-
-		ProductCard productCard = inventoryPage.products().get(index);
+		ProductCard productCard = getRandomProductCard();
 		saveProductContext(productCard);
 		productCard.addToCart().click();
 	}
+
+	private ProductCard getRandomProductCard() {
+		InventoryPage inventoryPage = atlasActions.getPage(InventoryPage.class);
+		inventoryPage.products().should(hasSize(not(0)));
+		int index = new Random().nextInt(inventoryPage.products().size());
+		return inventoryPage.products().get(index);
+	}
+
 
 	public void saveProductContext(ProductCard productCard) {
 		String name = productCard.name().getText();
@@ -47,5 +50,9 @@ public class InventoryActions {
 				.withDescription(desc)
 				.withPrice(price)
 				.withQuantity(1));
+	}
+
+	public void openRandomProduct() {
+		getRandomProductCard().name().click();
 	}
 }
