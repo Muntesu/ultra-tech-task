@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ScenarioScope
 @AllArgsConstructor
-public class AtlasService {
+public class AtlasConfiguration {
 	private final WebDriver webDriver;
 	private final EnvConfig envConfig;
 

@@ -26,6 +26,7 @@ public class DriverConfiguration {
 	@Bean
 	@ScenarioScope
 	public WebDriver setUpDriver() {
+		//only local execution supported at the moment
 		return instantiateLocalDriver("--start-maximized",
 				"--disable-notifications",
 				"--ignore-certificate-errors");
