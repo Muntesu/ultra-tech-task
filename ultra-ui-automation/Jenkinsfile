@@ -1,0 +1,31 @@
+pipeline {
+        agent any
+
+        stages {
+            stage ("Running test cases") {
+                steps {
+                    dir('ultra-ui-automation') {
+                        sh 'java -version'
+                        sh "pwd"
+                        sh 'chmod +x '
+                        sh './gradlew clean'
+                        sh './gradlew test'
+                        sh './gradlew allureReport'
+
+                    }
+                }
+            }
+            stage('Publishing test results') {
+                steps{
+                publishHTML(target: [
+                    reportName           : 'Allure Report',
+                    reportDir            : 'ultra-ui-automation/build/reports/allure-report/allureReport',
+                    reportFiles          : 'index.html',
+                    keepAll              : true,
+                    alwaysLinkToLastBuild: true,
+                    allowMissing         : false
+                ])
+                }
+            }
+       }
+}
