@@ -33,7 +33,7 @@ gradlew allureServe
 ```
 
 
-Note: Commands above will start execution on Chrome browsers, in order to change browser (chrome,firefox,safari) please update `browser` property in `ultra-ui-automation/src/main/resources/application.yaml`
+Note: Commands above will start execution on Chrome browser, in order to change browser (chrome,firefox,safari) please update `browser` property in `ultra-ui-automation/src/main/resources/application.yaml`
 
 
 ### How to run on jenkins:
